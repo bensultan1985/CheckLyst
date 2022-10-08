@@ -8,9 +8,14 @@ import {
   MantineProvider,
   Title,
 } from "@mantine/core";
+import { SessionProvider } from "next-auth/react";
+import LoginSection from "../components/LoginSection";
 
 export default function App(props: AppProps) {
-  const { Component, pageProps } = props;
+  const {
+    Component,
+    pageProps: { session, ...pageProps },
+  } = props;
 
   return (
     <>
@@ -21,30 +26,32 @@ export default function App(props: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{
-          /** Put your mantine theme override here */
-          colorScheme: "light",
-        }}
-      >
-        <AppShell
-          fixed={false}
-          padding="lg"
-          header={
-            <Header height="auto" fixed px="xl">
-              <Title>Cross Off</Title>
-            </Header>
-          }
-          footer={<Footer height="auto" fixed children={"test"}></Footer>}
+      <SessionProvider session={session}>
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{
+            /** Put your mantine theme override here */
+            colorScheme: "light",
+          }}
         >
-          <Container>
-            <Component {...pageProps} />
-          </Container>
-        </AppShell>
-      </MantineProvider>
+          <AppShell
+            fixed={false}
+            padding="lg"
+            header={
+              <Header height="auto" fixed px="xl">
+                <Title>Cross Off</Title>
+                <LoginSection></LoginSection>
+              </Header>
+            }
+            footer={<Footer height="auto" fixed children={"test"}></Footer>}
+          >
+            <Container>
+              <Component {...pageProps} />
+            </Container>
+          </AppShell>
+        </MantineProvider>
+      </SessionProvider>
     </>
   );
 }
