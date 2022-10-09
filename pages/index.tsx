@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { Anchor, Container, Text, Title, Image } from "@mantine/core";
-import { ToDoList } from "./ToDoList";
 import { UserDashboard } from "../components/UserDashboard";
 
 const user = "Ben";
