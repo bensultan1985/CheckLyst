@@ -6,6 +6,7 @@ import {
   Text,
   Button,
 } from "@mantine/core";
+import { IconPlus, IconX } from "@tabler/icons";
 import { useState } from "react";
 import { getStyles } from "../styles/ToDo";
 
@@ -24,15 +25,23 @@ export function CreateToDo() {
         p={2}
         mt={20}
       >
-        <Container
-          sx={(theme) => getStyles(theme)}
-          m={2}
-          p={2}
-          size={100}
-          onClick={toggleCreateToDo}
-        >
-          + add item
-        </Container>
+        {isCreateToDoExpanded ? (
+          <Text
+            onClick={toggleCreateToDo}
+            p={0}
+            sx={(theme) => getStyles(theme)}
+          >
+            <IconX size={14}></IconX> cancel
+          </Text>
+        ) : (
+          <Text
+            onClick={toggleCreateToDo}
+            p={0}
+            sx={(theme) => getStyles(theme)}
+          >
+            <IconPlus size={14}></IconPlus> add item
+          </Text>
+        )}
         <Collapse in={isCreateToDoExpanded}>
           <Container>
             <TextInput label="Description"></TextInput>

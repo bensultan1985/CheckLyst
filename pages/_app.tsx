@@ -2,7 +2,7 @@ import { AppProps } from "next/app";
 import Head from "next/head";
 import React from "react";
 import { AppShell, Container, MantineProvider } from "@mantine/core";
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider, useSession } from "next-auth/react";
 import { AppHeader } from "../components/AppHeader";
 import { AppFooter } from "../components/AppFooter";
 import { theme } from "../styles/mantineGlobalTheme";

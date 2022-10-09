@@ -1,4 +1,4 @@
-import { Container, Text } from "@mantine/core";
+import { Box, Container, Text } from "@mantine/core";
 import { CreateToDo } from "./CreateToDo";
 import { ToDoList } from "./ToDoList";
 
@@ -6,8 +6,10 @@ export function UserDashboard(props: any) {
   const { user } = props;
   return (
     <Container size="lg">
-      <Text>{user}'s Lyst</Text>
-      <CreateToDo></CreateToDo>
+      <Box m="md" p="sm">
+        <Text>{user}'s Lyst</Text>
+        <CreateToDo></CreateToDo>
+      </Box>
       <ToDoList
         //placeholder data
         toDos={[

@@ -3,9 +3,12 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { Anchor, Container, Text, Title, Image } from "@mantine/core";
 import { UserDashboard } from "../components/UserDashboard";
+import { useSession } from "next-auth/react";
 
 const user = "Ben";
 const Home: NextPage = (props) => {
+  const { data: session } = useSession();
+  console.log(session, "sesh");
   return (
     <div className={styles.container}>
       <Head>
