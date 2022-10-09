@@ -28,10 +28,10 @@ export function CreateToDo() {
           sx={(theme) => getStyles(theme)}
           m={2}
           p={2}
-          size={200}
+          size={100}
           onClick={toggleCreateToDo}
         >
-          + Create new Lyst item
+          + add item
         </Container>
         <Collapse in={isCreateToDoExpanded}>
           <Container>
