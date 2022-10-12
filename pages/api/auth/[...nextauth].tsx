@@ -8,8 +8,8 @@ export default NextAuth({
   secret: process.env.NEXTAUTH_URL,
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID || "",
-      clientSecret: process.env.GOOGLE_SECRET || "",
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     }),
     CredentialsProvider({
       name: "Credentials",
@@ -19,7 +19,8 @@ export default NextAuth({
       },
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
-        const user = { id: 1, name: "J Smith", email: "jsmith@example.com" };
+        console.log(credentials, "cred");
+        const user = { id: 1, name: "John Smith", email: "jsmith@example.com" };
 
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
@@ -39,15 +40,22 @@ export default NextAuth({
   debug: true,
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
+      if (account.provider === "google") {
+        return profile.email_verified;
+      }
       return true;
     },
     async redirect({ url, baseUrl }) {
       return baseUrl;
     },
     async session({ session, token, user }) {
+      session.accessToken = token.accessToken;
       return session;
     },
     async jwt({ token, user, account, profile, isNewUser }) {
+      if (account) {
+        token.accessToken = account.access_token;
+      }
       return token;
     },
   },

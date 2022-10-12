@@ -4,11 +4,12 @@ import styles from "../styles/Home.module.css";
 import { Anchor, Container, Text, Title, Image } from "@mantine/core";
 import { UserDashboard } from "../components/UserDashboard";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 const user = "Ben";
 const Home: NextPage = (props) => {
   const { data: session } = useSession();
-  console.log(session, "sesh");
+  console.log(session);
   return (
     <div className={styles.container}>
       <Head>
@@ -17,22 +18,25 @@ const Home: NextPage = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        {user ? (
+        {session?.user?.name ? (
           <Container>
-            <UserDashboard user={user}></UserDashboard>
+            <UserDashboard user={session.user.name}></UserDashboard>
           </Container>
         ) : (
           <Container>
             <Title>Welcome</Title>
             <Image
               my="xl"
-              src="http://localhost:3000/heroimage.jpeg"
+              src="http://localhost:3000/images/logos/heroimage.jpeg"
               height={200}
             ></Image>
             <Text my="xl">
               CheckLyst is a free, lightweight, and addictive to-do list
               application. To unlock the power of CheckLyst,{" "}
-              <Anchor variant="gradient">Sign up</Anchor> today!
+              <Link href="/Register">
+                <Anchor variant="gradient">Sign up</Anchor>
+              </Link>{" "}
+              today!
             </Text>
           </Container>
         )}

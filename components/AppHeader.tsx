@@ -1,4 +1,5 @@
 import { Anchor, Header, SimpleGrid, Title } from "@mantine/core";
+import Link from "next/link";
 import LoginSection from "./LoginSection";
 
 export function AppHeader() {
@@ -15,7 +16,9 @@ export function AppHeader() {
       >
         <SimpleGrid cols={2}>
           <div>
-            <Title style={{ display: "inline-block" }}>CheckLyst</Title>
+            <Link href={"/"}>
+              <Title style={{ display: "inline-block" }}>CheckLyst</Title>
+            </Link>
           </div>
           <LoginSection></LoginSection>
         </SimpleGrid>

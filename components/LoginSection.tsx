@@ -1,5 +1,6 @@
 import { Button } from "@mantine/core";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
 export default function LoginSection() {
   const { data: session } = useSession();
   if (session) {
@@ -17,9 +18,9 @@ export default function LoginSection() {
       style={{ width: "100%", textAlign: "right", display: "inline-block" }}
     >
       Not signed in{" "}
-      <Button variant="filled" onClick={() => signIn()}>
-        Sign in{" "}
-      </Button>
+      <Link href={"/Login"}>
+        <Button variant="filled">Sign in </Button>
+      </Link>
     </span>
   );
 }
