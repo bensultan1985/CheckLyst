@@ -11,17 +11,7 @@ export function UserDashboard(props: any) {
         <CreateToDo></CreateToDo>
       </Box>
       <ToDoList
-        //placeholder data
-        toDos={[
-          {
-            header: "File Taxes",
-            complete: false,
-          },
-          {
-            header: "Call Eddie About Desk",
-            complete: true,
-          },
-        ]}
+      //placeholder data
       ></ToDoList>
     </Container>
   );

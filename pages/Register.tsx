@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import { Title, TextInput, Button, Text, Container } from "@mantine/core";
+import {
+  Title,
+  TextInput,
+  Button,
+  Text,
+  Container,
+  Anchor,
+} from "@mantine/core";
 import styles from "../styles/Home.module.css";
 import { signIn } from "next-auth/react";
 import { createUser } from "../services/services";
+import { getLocationOrigin } from "next/dist/shared/lib/utils";
 
 export default function Register() {
   const [firstName, setFirstName] = useState("");
@@ -15,16 +23,20 @@ export default function Register() {
       <main className={styles.main}>
         <Title>Register</Title>
 
-        <Text>Use your Google Account:</Text>
-        <Button
-          onClick={() =>
-            signIn("google", {
-              callbackUrl: process.env.GOOGLE_CALLBACK_URL,
-            })
-          }
-        >
-          Google Login
-        </Button>
+        <Text>
+          (Or to sign in with Google:{" "}
+          <Anchor
+            onClick={() =>
+              signIn("google", {
+                callbackUrl: getLocationOrigin(),
+              })
+            }
+          >
+            click here
+          </Anchor>
+          )
+        </Text>
+
         <Container></Container>
         <TextInput
           label="Email"

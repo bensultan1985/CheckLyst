@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
-import { Button, Container, TextInput, Title } from "@mantine/core";
+import {
+  Anchor,
+  Button,
+  Container,
+  TextInput,
+  Title,
+  Text,
+} from "@mantine/core";
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
+import { getLocationOrigin } from "next/dist/shared/lib/utils";
+import { sign } from "crypto";
 
 export default function Login() {
   const [password, setPassword] = useState("");
@@ -16,7 +25,7 @@ export default function Login() {
         <link rel="icon" href="/favicon.ico" />
       </Head>{" "}
       <main className={styles.main}>
-        <Title>Login</Title>
+        <Title>Sign In</Title>
         <Container m={"xl"}>
           <TextInput
             label="email"
@@ -29,14 +38,29 @@ export default function Login() {
           <Button
             variant="outline"
             onClick={() =>
-              signIn("credentials", { username: email, password: password })
+              signIn("credentials", {
+                username: email,
+                password: password,
+                callbackUrl: getLocationOrigin(),
+              })
             }
           >
             Login
           </Button>
-          <Button variant="outline" onClick={() => signIn("google")}>
-            Google
-          </Button>
+
+          <Text>
+            (Or to sign in with Google:{" "}
+            <Anchor
+              onClick={() =>
+                signIn("google", {
+                  callbackUrl: getLocationOrigin(),
+                })
+              }
+            >
+              click here
+            </Anchor>
+            )
+          </Text>
         </Container>
       </main>
     </>
