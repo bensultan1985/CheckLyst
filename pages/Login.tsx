@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
-import Link from "next/link";
+import { signIn } from "next-auth/react";
 import {
   Anchor,
   Button,
@@ -12,7 +11,9 @@ import {
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import { getLocationOrigin } from "next/dist/shared/lib/utils";
-import { sign } from "crypto";
+import { FacebookIcon, GoogleIcon, Logo, LogoVertical, AppleIcon } from "svg";
+import { SVGIcon } from "../components/SVGIcon";
+import Auth from "../components/Auth";
 
 export default function Login() {
   const [password, setPassword] = useState("");
@@ -26,6 +27,7 @@ export default function Login() {
       </Head>{" "}
       <main className={styles.main}>
         <Title>Sign In</Title>
+        <Auth labelText="sign in"></Auth>
         <Container m={"xl"}>
           <TextInput
             label="email"
@@ -47,20 +49,6 @@ export default function Login() {
           >
             Login
           </Button>
-
-          <Text>
-            (Or to sign in with Google:{" "}
-            <Anchor
-              onClick={() =>
-                signIn("google", {
-                  callbackUrl: getLocationOrigin(),
-                })
-              }
-            >
-              click here
-            </Anchor>
-            )
-          </Text>
         </Container>
       </main>
     </>

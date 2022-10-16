@@ -11,6 +11,9 @@ import styles from "../styles/Home.module.css";
 import { signIn } from "next-auth/react";
 import { createUser } from "../services/services";
 import { getLocationOrigin } from "next/dist/shared/lib/utils";
+import { GoogleIcon } from "../svg/SocialNetworksIcons/GoogleIcon";
+import { SVGIcon } from "../components/SVGIcon";
+import Auth from "../components/Auth";
 
 export default function Register() {
   const [firstName, setFirstName] = useState("");
@@ -23,21 +26,8 @@ export default function Register() {
       <main className={styles.main}>
         <Title>Register</Title>
 
-        <Text>
-          (Or to sign in with Google:{" "}
-          <Anchor
-            onClick={() =>
-              signIn("google", {
-                callbackUrl: getLocationOrigin(),
-              })
-            }
-          >
-            click here
-          </Anchor>
-          )
-        </Text>
+        <Auth labelText="register"></Auth>
 
-        <Container></Container>
         <TextInput
           label="Email"
           placeholder="jhon@doe.com"
