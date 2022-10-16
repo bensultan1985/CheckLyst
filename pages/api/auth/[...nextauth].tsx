@@ -1,11 +1,21 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import EmailProvider from "next-auth/providers/email";
-import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { prisma } from "../../../services/services";
 
 export default NextAuth({
+  //set to "jwt" because credentials login with db session is not supported by NextAuth - Ben
+  //https://stackoverflow.com/questions/72090328/next-auth-credentials-not-returning-session-and-not-storing-session-and-account
+  session: {
+    strategy: "jwt",
+    maxAge: 3000,
+  },
   secret: process.env.NEXTAUTH_URL,
+  adapter: PrismaAdapter(prisma),
+  pages: {
+    signIn: "/Login",
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
@@ -14,13 +24,22 @@ export default NextAuth({
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        email: {
+          label: "email",
+          type: "text",
+          placeholder: "jsmith@test.com",
+        },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        // Add logic here to look up the user from the credentials supplied
-        console.log(credentials, "cred");
-        const user = { id: 1, name: "John Smith", email: "jsmith@example.com" };
+        const email: string = req?.body?.username;
+        const password = req?.body?.password;
+        const user = await prisma.user.findUnique({
+          where: {
+            email: email,
+          },
+        });
+        // await prisma.$disconnect();
 
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
@@ -37,19 +56,15 @@ export default NextAuth({
   theme: {
     colorScheme: "light",
   },
-  debug: true,
+  // debug: true,
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      if (account.provider === "google") {
-        return profile.email_verified;
-      }
       return true;
     },
     async redirect({ url, baseUrl }) {
       return baseUrl;
     },
-    async session({ session, token, user }) {
-      session.accessToken = token.accessToken;
+    async session({ session, user, token }) {
       return session;
     },
     async jwt({ token, user, account, profile, isNewUser }) {

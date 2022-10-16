@@ -7,13 +7,13 @@ import { AppHeader } from "../components/AppHeader";
 import { AppFooter } from "../components/AppFooter";
 import { theme } from "../styles/mantineGlobalTheme";
 import { userStore } from "../context/userStore";
+import type { Session } from "next-auth";
 
-export default function App(props: AppProps) {
-  const {
-    Component,
-    pageProps: { session, ...pageProps },
-  } = props;
-
+// export default function App(props: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps<{ session: Session }>) {
   return (
     <>
       <Head>
@@ -23,7 +23,7 @@ export default function App(props: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <userStore.Provider value={{ user: { firstName: "Ben" } }}>
+      <userStore.Provider value={{ user: { name: "test" } }}>
         <SessionProvider session={session}>
           <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
             <AppShell

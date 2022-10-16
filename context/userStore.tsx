@@ -1,8 +1,12 @@
 import React from "react";
+import { useSession } from "next-auth/react";
+
+// const { data: session } = useSession();
 
 const userStore = React.createContext({
   user: {
-    firstName: "test",
+    // name: session?.user?.name,
+    name: "ben",
   },
 });
 

@@ -13,7 +13,7 @@ import { getStyles } from "../styles/ToDo";
 export function CreateToDo() {
   const [isCreateToDoExpanded, setIsCreateToDoExpanded] = useState(false);
   function toggleCreateToDo() {
-    console.log("test");
+    // console.log("test");
     setIsCreateToDoExpanded(!isCreateToDoExpanded);
   }
   return (
