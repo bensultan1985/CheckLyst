@@ -10,7 +10,6 @@ import { getHeapSnapshot } from "v8";
 
 const Home: NextPage = (props) => {
   const { data: session, status } = useSession();
-  console.log(session, "user", status);
   return (
     <div className={styles.container}>
       <Head>

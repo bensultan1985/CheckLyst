@@ -17,9 +17,12 @@ export default function LoginSection() {
     <span
       style={{ width: "100%", textAlign: "right", display: "inline-block" }}
     >
-      Not signed in{" "}
+      {/* Not signed in{" "} */}
+      <Link href={"/Register"}>
+        <Button variant="filled">Register</Button>
+      </Link>
       <Link href={"/Login"}>
-        <Button variant="filled">Sign in </Button>
+        <Button variant="filled">Sign in</Button>
       </Link>
     </span>
   );

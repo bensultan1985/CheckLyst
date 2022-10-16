@@ -6,7 +6,6 @@ import { SessionProvider, useSession } from "next-auth/react";
 import { AppHeader } from "../components/AppHeader";
 import { AppFooter } from "../components/AppFooter";
 import { theme } from "../styles/mantineGlobalTheme";
-import { userStore } from "../context/userStore";
 import type { Session } from "next-auth";
 
 // export default function App(props: AppProps) {
@@ -23,22 +22,20 @@ export default function App({
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <userStore.Provider value={{ user: { name: "test" } }}>
-        <SessionProvider session={session}>
-          <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
-            <AppShell
-              fixed={false}
-              padding="lg"
-              header={<AppHeader></AppHeader>}
-              footer={<AppFooter></AppFooter>}
-            >
-              <Container>
-                <Component {...pageProps} />
-              </Container>
-            </AppShell>
-          </MantineProvider>
-        </SessionProvider>
-      </userStore.Provider>
+      <SessionProvider session={session}>
+        <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
+          <AppShell
+            fixed={false}
+            padding="lg"
+            header={<AppHeader></AppHeader>}
+            footer={<AppFooter></AppFooter>}
+          >
+            <Container>
+              <Component {...pageProps} />
+            </Container>
+          </AppShell>
+        </MantineProvider>
+      </SessionProvider>
     </>
   );
 }

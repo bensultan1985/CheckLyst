@@ -1,4 +1,4 @@
-import { userService } from "../../../middleware/services";
+import { sessionService, userService } from "../../../middleware/services";
 
 export default handler;
 
@@ -19,7 +19,7 @@ function handler(req: any, res: any) {
   //   }
 
   async function create() {
-    const createdUser = await userService.createUser(req.body);
-    return res.status(200).json(createdUser);
+    const createdSession = await sessionService.createSession(req.body);
+    return res.status(200).json(createdSession);
   }
 }
