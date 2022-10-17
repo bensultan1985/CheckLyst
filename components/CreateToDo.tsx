@@ -1,11 +1,4 @@
-import {
-  Box,
-  Collapse,
-  Container,
-  TextInput,
-  Text,
-  Button,
-} from "@mantine/core";
+import { Collapse, Container, TextInput, Text, Button } from "@mantine/core";
 import { IconPlus, IconX } from "@tabler/icons";
 import { useState } from "react";
 import { getStyles } from "../styles/ToDo";
@@ -13,7 +6,6 @@ import { getStyles } from "../styles/ToDo";
 export function CreateToDo() {
   const [isCreateToDoExpanded, setIsCreateToDoExpanded] = useState(false);
   function toggleCreateToDo() {
-    // console.log("test");
     setIsCreateToDoExpanded(!isCreateToDoExpanded);
   }
   return (

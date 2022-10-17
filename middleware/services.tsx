@@ -1,6 +1,4 @@
-import { StepCompleted } from "@mantine/core/lib/Stepper/StepCompleted/StepCompleted";
 import { Prisma, PrismaClient } from "@prisma/client";
-import { ToDoList } from "../components/ToDoList";
 export const prisma = new PrismaClient();
 
 export const createUser = async (user: any) => {
