@@ -5,11 +5,9 @@ import { Anchor, Container, Text, Title, Image } from "@mantine/core";
 import { UserDashboard } from "../components/UserDashboard";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { getSession } from "next-auth/react";
-import { getHeapSnapshot } from "v8";
 
 const Home: NextPage = (props) => {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   return (
     <div className={styles.container}>
       <Head>

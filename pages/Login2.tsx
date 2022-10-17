@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import {
-  Anchor,
   Button,
   Container,
+  PasswordInput,
   TextInput,
   Title,
-  Text,
 } from "@mantine/core";
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import { getLocationOrigin } from "next/dist/shared/lib/utils";
-import { FacebookIcon, GoogleIcon, Logo, LogoVertical, AppleIcon } from "svg";
-import { SVGIcon } from "../components/SVGIcon";
 import Auth from "../components/Auth";
 
 export default function Login() {
@@ -33,12 +30,12 @@ export default function Login() {
             label="email"
             onChange={(e: any) => setEmail(e.target.value)}
           ></TextInput>
-          <TextInput
+          <PasswordInput
             label="password"
             onChange={(e: any) => setPassword(e.target.value)}
-          ></TextInput>
+          ></PasswordInput>
           <Button
-            variant="outline"
+            color="violet"
             onClick={() =>
               signIn("credentials", {
                 username: email,

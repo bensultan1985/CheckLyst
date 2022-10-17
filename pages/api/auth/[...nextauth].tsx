@@ -121,7 +121,7 @@ export default async function handler(req, res) {
     // },
     adapter: PrismaAdapter(prisma),
     pages: {
-      signIn: "/Login",
+      signIn: "/SignIn",
     },
     session: {
       // strategy: "jwt",

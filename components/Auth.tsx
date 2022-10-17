@@ -1,14 +1,15 @@
-import { Container, Text } from "@mantine/core";
+import { BackgroundImage, Container, Text } from "@mantine/core";
 import { signIn } from "next-auth/react";
 import { getLocationOrigin } from "next/dist/shared/lib/utils";
 import { GoogleIcon } from "../svg/SocialNetworksIcons/GoogleIcon";
 import { SVGIcon } from "./SVGIcon";
+import { Divider } from "@mantine/core";
 
 export default function Auth(props: { labelText: string }) {
   const { labelText } = props;
   return (
     <>
-      <Text p="md">
+      <Text mt="sm" p="md">
         {labelText} with:{" "}
         <Container style={{ display: "inline-block" }}>
           <SVGIcon>
@@ -23,7 +24,16 @@ export default function Auth(props: { labelText: string }) {
           </SVGIcon>
         </Container>
       </Text>
+      <div
+        style={{
+          marginTop: "10px",
+          marginBottom: "6px",
 
+          height: "2px",
+          width: "300px",
+          background: "purple",
+        }}
+      ></div>
       <Text p="md">Or {labelText} with your email: </Text>
     </>
   );
