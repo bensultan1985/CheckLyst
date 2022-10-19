@@ -3,7 +3,6 @@ import { signIn } from "next-auth/react";
 import { getLocationOrigin } from "next/dist/shared/lib/utils";
 import { GoogleIcon } from "../svg/SocialNetworksIcons/GoogleIcon";
 import { SVGIcon } from "./SVGIcon";
-import { Divider } from "@mantine/core";
 
 export default function Auth(props: { labelText: string }) {
   const { labelText } = props;

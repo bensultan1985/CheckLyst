@@ -12,6 +12,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Auth from "../components/Auth";
 import styles from "../styles/Home.module.css";
+import { brandConfig } from "../config";
 
 //future usage
 const emailValidityBasic = /^\S+@\S+$/;
@@ -106,7 +107,8 @@ export default function Register() {
 
             <Checkbox
               mt="md"
-              color="violet"
+              // color="violet"
+              color={brandConfig.primaryComponentBackgroundColor}
               checked={checked}
               onClick={() => {
                 setChecked(!checked);
@@ -120,7 +122,14 @@ export default function Register() {
             />
 
             <Group position="right" mt="md">
-              <Button color="violet" type="submit">
+              <Button
+                // color="violet"
+                sx={{
+                  color: brandConfig.primaryComponentTextColor,
+                  backgroundColor: brandConfig.primaryComponentBackgroundColor,
+                }}
+                type="submit"
+              >
                 Submit
               </Button>
             </Group>

@@ -11,6 +11,7 @@ import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import { getLocationOrigin } from "next/dist/shared/lib/utils";
 import Auth from "../components/Auth";
+import { brandConfig } from "../config";
 
 export default function Login() {
   const [password, setPassword] = useState("");
@@ -35,7 +36,9 @@ export default function Login() {
             onChange={(e: any) => setPassword(e.target.value)}
           ></PasswordInput>
           <Button
-            color="violet"
+            // color="violet"
+            sx={{ color: brandConfig.primaryComponentTextColor }}
+            color={brandConfig.primaryComponentBackgroundColor}
             onClick={() =>
               signIn("credentials", {
                 username: email,

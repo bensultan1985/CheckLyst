@@ -1,19 +1,26 @@
 import { Footer, Text, Anchor } from "@mantine/core";
+import { masterConfig } from "../config";
+import { brandConfig } from "../config";
 
 export function AppFooter() {
+  const websiteData = masterConfig.global.appConfig.websiteData;
   return (
     <Footer
       sx={(theme) => ({
-        backgroundColor: theme?.colors?.violet[5],
-        color: "white",
+        // backgroundColor: theme?.colors?.violet[5],
+        backgroundColor: brandConfig.primaryComponentBackgroundColor,
+        color: brandConfig.primaryComponentTextColor,
       })}
       height="auto"
       fixed
       children={
         <Text m={4} mx={20} align="center">
-          Copyright 2022
-          <Anchor mx={30}>About Us</Anchor>
-          <Anchor>Privacy Policy</Anchor>
+          <span style={{ marginRight: "20px" }}>Copyright 2022</span>
+          {websiteData.optional.footerBusinessLinks.map((link, i) => (
+            <Anchor mx={20} href={link.link} key={i} style={{ color: "white" }}>
+              {link.label}
+            </Anchor>
+          ))}
         </Text>
       }
     ></Footer>

@@ -27,7 +27,7 @@ export default function ToDo(props: ToDoProps) {
             <Checkbox
               label={styledHeader}
               checked={checked}
-              color="violet"
+              // color="violet"
             ></Checkbox>
           </div>
           <div style={{ textAlign: "right" }}>

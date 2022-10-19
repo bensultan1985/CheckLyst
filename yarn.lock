@@ -2859,6 +2859,11 @@ serverless-mysql@^1.5.4:
   optionalDependencies:
     "@types/mysql" "^2.15.6"
 
+shade-generator@^1.2.7:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/shade-generator/-/shade-generator-1.2.7.tgz#cbdf2b03e9fb76fc4e7e5dcd5639d14a06bca3f3"
+  integrity sha512-AMx250ot0n6ABd2622kCmeAbXvGRsevpAqDA2rt3chX6FoJcQaAe/XpeLUjpiXUWwg+CmrlHF7Z/EMK3pxFH4g==
+
 shallowequal@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
